@@ -39,6 +39,18 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 16,
         fontWeight: 'bold'
+    },
+    description: {
+        fontSize: 14,
+        color: '#666'
+    },
+    price: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginTop: 5
+    },
+    menuList: {
+        flexGrow: 1
     }
 
 });
