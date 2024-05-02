@@ -3,8 +3,8 @@ import { StyleSheet, Text, View } from "react-native";
 
 function Head(): React.JSX.Element {
     return (
-        <View>
-            <Text>App Exemplo</Text>
+        <View style={styles.header}>
+            <Text style={styles.headerText}>App Exemplo</Text>
         </View>
 
     );
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white'
     },
-    
+
 })
 
 export default Head;
