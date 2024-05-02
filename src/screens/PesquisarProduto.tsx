@@ -1,13 +1,57 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Head from "../components/Head";
 import Footer from "../components/Footer";
 
+interface Produto {
+    id: number;
+    nome: string;
+    ingrediente: string;
+    preco: string;
+    imagem: string
+}
+
 function PesquisarProduto(): React.JSX.Element {
+
+    const produtos: Produto[] = [
+        {
+            id: 1,
+            nome: 'HotDog',
+            ingrediente: 'Pão, batata, purê ....',
+            preco: '10.99',
+            imagem: require('../assets/images/hamburger.png')
+        },
+        {
+            id: 2,
+            nome: 'HotDog Especial',
+            ingrediente: 'Pão, batata, purê ....',
+            preco: '29.99',
+            imagem: require('../assets/images/hamburger.png')
+        },
+    ]
+
+    const renderItem = ({ item }: { item: Produto}) => {
+        return (
+            <TouchableOpacity style={styles.menuItem}>
+                <Image source={require('../assets/images/hamburger.png')} style={styles.image}/>
+                <View style={styles.itemDetails}>
+                    <Text style={styles.name}>{item.nome}</Text>
+                    <Text style={styles.description}>{item.ingrediente}</Text>
+                    <Text style={styles.price}>{item.preco}</Text>
+                </View>
+            </TouchableOpacity>
+        );
+    }
     return (
-        <View>
+        <View style={styles.container}>
+            <StatusBar backgroundColor='red' barStyle='light-content'/>
             <Head/>
-            <Text>Tela Principal</Text>
+            <FlatList
+            data={produtos}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id ? item.id.toString(): Math.random().toString()}
+            contentContainerStyle={styles.menuList}
+            />
             <Footer/>
         </View>
 
