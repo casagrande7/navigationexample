@@ -2,6 +2,7 @@ import React from "react";
 import { FlatList, Image, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Head from "../components/Head";
 import Footer from "../components/Footer";
+import { useNavigation } from "@react-navigation/native";
 
 interface Produto {
     id: number;
@@ -12,6 +13,8 @@ interface Produto {
 }
 
 function PesquisarProduto(): React.JSX.Element {
+
+    const navigation = useNavigation();
 
     const produtos: Produto[] = [
         {
@@ -30,9 +33,13 @@ function PesquisarProduto(): React.JSX.Element {
         },
     ]
 
+    const selecionaProduto = (produto: Produto) => {
+        navigation.navigate('EditarProduto', {produto});
+    }
+
     const renderItem = ({ item }: { item: Produto}) => {
         return (
-            <TouchableOpacity style={styles.menuItem}>
+            <TouchableOpacity style={styles.menuItem} onPress={() => selecionaProduto}>
                 <Image source={require('../assets/images/hamburger.png')} style={styles.image}/>
                 <View style={styles.itemDetails}>
                     <Text style={styles.name}>{item.nome}</Text>
